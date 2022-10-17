@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="total.css">
 <meta charset="UTF-8">
 <title>쇼핑몰 회원관리</title>
 </head>
@@ -33,14 +34,13 @@
 		for (MemberDto m : member) {
 		%>
 		<tr>
-			<td><%=m.getCustno()%></td>
+			<td><a href="setMember.jsp?custno=<%=m.getCustno()%>"><%=m.getCustno() %></a></td>
 			<td><%=m.getCustname()%></td>
 			<td><%=m.getPhone()%></td>
 			<td><%=m.getAddress()%></td>
 			<td><%=m.getJoindate()%></td>
 			<td><%=m.getGrade()%></td>
 			<td><%=m.getCity()%></td>
-			<td><a href = "/webTest02/setMember.jsp?custno=<%=m.getCustno()%>">수정</a></td>
 		</tr>
 
 		<%
