@@ -40,6 +40,7 @@
 			<td><%=m.getJoindate()%></td>
 			<td><%=m.getGrade()%></td>
 			<td><%=m.getCity()%></td>
+			<td><a href = "/webTest02/setMember.jsp?custno=<%=m.getCustno()%>">수정</a></td>
 		</tr>
 
 		<%

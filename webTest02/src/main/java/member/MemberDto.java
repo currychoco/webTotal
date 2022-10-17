@@ -52,7 +52,9 @@ public class MemberDto {
 	}
 
 	public String getJoindate() {
-		return joindate;
+		String[] info = this.joindate.split(" ");
+		String date = info[0];
+		return date;
 	}
 
 	public void setJoindate(String joindate) {

@@ -1,4 +1,3 @@
-
 <%@page import="java.util.Collections"%>
 <%@page import="member.MemberDtoTotalSales"%>
 <%@page import="money.MoneyDto"%>
