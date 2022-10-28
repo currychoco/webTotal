@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="resources/table.css">
     <title>EZEN BOARD</title>
 </head>
+<script>
+	
+</script>
 <body>
 	<%
 	BoardDao dao = BoardDao.getInstance();
@@ -28,6 +31,7 @@
                     <th>user</th>
                     <th>regDate</th>
                     <th>modDate</th>
+                    <th>viewCnt</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +42,7 @@
                     <td><%=board.getUser() %></td>
                     <td><%=board.getRegDate() %></td>
                     <td><%=board.getModDate() %></td>
+                    <td><%=board.getViewCnt() %></td>
                 </tr>
             <%} %>
             </tbody>

@@ -174,11 +174,12 @@ public class BoardDao {
 	}
 	// Update
 	public void updateBoard(BoardDto board) {
-		String sql = "update board set title = ?, content = ? where `no` = ?";
+		String sql = "update board set title = ?, content = ?, modDate = ? where `no` = ?";
 		
 		int no = board.getNo();
 		String title = board.getTitle();
 		String content = board.getContent();
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		String password = board.getPassword();
 		
 		try {
@@ -186,7 +187,8 @@ public class BoardDao {
 			this.pstmt=this.conn.prepareStatement(sql);
 			this.pstmt.setString(1, title);
 			this.pstmt.setString(2, content);
-			this.pstmt.setInt(3, no);
+			this.pstmt.setTimestamp(3, now);
+			this.pstmt.setInt(4, no);
 			this.pstmt.execute();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -201,4 +203,49 @@ public class BoardDao {
 	}
 	
 	// Delete
+	public void deleteBoard(int no) {
+		String sql = "DELETE FROM board WHERE no = ?";
+		
+		try {
+			this.conn = DBManager.getConnection(this.url, this.user, this.password);
+			this.pstmt = this.conn.prepareStatement(sql);
+			this.pstmt.setInt(1, no);
+			this.pstmt.execute();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				this.pstmt.close();
+				this.conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}	
+		}
+	}
+	
+	// viewCnt
+	public void viewCnt(int no) {
+		BoardDto board = getBoardByNo(no);
+		int viewCnt = board.getViewCnt() + 1;
+		
+		String sql = "UPDATE board SET viewCnt = ? WHERE no = ?";
+		try {
+			conn=DBManager.getConnection(url, user, password);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, viewCnt);
+			pstmt.setInt(2, no);
+			pstmt.execute();
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
 }

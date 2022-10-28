@@ -38,7 +38,7 @@ public class boardUpdateAction extends HttpServlet {
 			BoardDto board = new BoardDto(no,title,content,"");
 			dao.updateBoard(board);
 		}
-		request.getRequestDispatcher("index").forward(request, response);
+		response.sendRedirect("alertAndRedirect?alertMsg=Update Success!&redirectUrl=index");
 	}
 
 	/**

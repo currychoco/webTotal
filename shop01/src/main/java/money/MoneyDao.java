@@ -20,7 +20,7 @@ public class MoneyDao {
 	
 	private MoneyDao() {
 		this.url = "jdbc:oracle:thin:@localhost:1521:xe";
-		this.user = "c##test01";
+		this.user = "c##lhr";
 		this.password = "1234";
 	}
 	

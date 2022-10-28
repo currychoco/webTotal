@@ -18,9 +18,15 @@
     <div class="form-container">
         <form method="post" action="boardWriteAction">
             <input type="text" name="title" placeholder="제목" required>
-            <textarea name="content" rows="20" placeholder="글내용" required>
-
-            </textarea>
+            <textarea name="content" rows="20" placeholder="글내용" required></textarea>
+            <div>
+            	<span>아이디 &nbsp;: &nbsp;</span>
+            	<input type="text" name="user" required>
+            </div>
+            <div>
+            	<span>비밀번호 : </span>
+            	<input type="password" name="password" required>
+            </div>
             <input type="submit">
         </form>
     </div>

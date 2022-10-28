@@ -19,8 +19,12 @@
 	request.setCharacterEncoding("utf-8");
 	if(request.getParameter("no") != null){
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("no: "+no);
 		board = dao.getBoardByNo(no);
+		String password = request.getParameter("password");
+		if(!board.getPassword().equals(password)){
+			response.sendRedirect("alertAndRedirect?alertMsg=Wrong Password&redirectUrl=index");
+		}
+			
 		%>
 	}
 	

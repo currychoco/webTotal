@@ -11,16 +11,7 @@
   </welcome-file-list>
   
   <!-- Servlet 등록 및 맵핑 -->
-	<servlet>
-  	<servlet-name>boardDelete</servlet-name>
-  	<servlet-class>board.boardDeleteAction</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>boardDelete</servlet-name>
-  	<url-pattern>/boardDelete</url-pattern>
-  </servlet-mapping>
 
-  
   <servlet>
   	<servlet-name>boardWrite</servlet-name>
   	<servlet-class>board.boardWriteAction</servlet-class>
@@ -47,6 +38,24 @@
   <servlet-mapping>
   	<servlet-name>index</servlet-name>
   	<url-pattern>/index</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>alertAndBack</servlet-name>
+  	<jsp-file>/alertAndBack.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>alertAndBack</servlet-name>
+  	<url-pattern>/alertAndBack</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>alertAndRedirect</servlet-name>
+  	<jsp-file>/alertAndRedirect.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>alertAndRedirect</servlet-name>
+  	<url-pattern>/alertAndRedirect</url-pattern>
   </servlet-mapping>
 
 </web-app>

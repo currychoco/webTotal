@@ -37,13 +37,16 @@ public class boardWriteAction extends HttpServlet {
 		System.out.println(content);
 		if(title != null && content != null){
 
-			String user = "apple";
-			String password = "1234";
+			String user = request.getParameter("user");
+			String password = request.getParameter("password");
 
 			BoardDto board = new BoardDto(title, content, user, password);
 			dao.createBoard(board);
+			response.sendRedirect("alertAndRedirect?alertMsg=Save Success!&redirectUrl=index");
+		}else {
+			response.sendRedirect("alertAndRedirect?alertMsg=Save Failed&redirectUrl=index");
 		}
-		request.getRequestDispatcher("index").forward(request, response);
+
 	}
 
 	/**

@@ -34,3 +34,12 @@ input[type=submit] {
 textarea {
 	resize: none;
 }
+
+.password{
+	display: flex;
+}
+
+span{
+	margin-top:12px;
+	margin-right:10px;
+}
