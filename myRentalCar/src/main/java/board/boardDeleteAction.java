@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class boardDeleteAction
@@ -29,21 +30,15 @@ public class boardDeleteAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		BoardDao dao = BoardDao.getInstance();
-		
-		if(request.getParameter("no")!=null && request.getParameter("password") != null){
+		HttpSession session = request.getSession();
+		if(session.getAttribute("id")==null) {
+			response.sendRedirect("alertAndRedirect?alertMsg=Login required&redirectUrl=login");
+		}else {
+			BoardDao dao = BoardDao.getInstance();
 			int no = Integer.parseInt(request.getParameter("no"));
-			BoardDto board = dao.getBoardByNo(no);
-			String password = request.getParameter("password");
-			
-			if(board.getPassword().equals(password)){
-				dao.deleteBoard(no);
-				response.sendRedirect("alertAndRedirect?alertMsg=Delete Success!&redirectUrl=board");
-			} else {
-				response.sendRedirect("alertAndRedirect?alertMsg=Wrong Password&redirectUrl=board");
-			}
+			dao.deleteBoard(no);
+			response.sendRedirect("alertAndRedirect?alertMsg=Delete Success&redirectUrl=board");
 		}
-		
 	}
 
 	/**

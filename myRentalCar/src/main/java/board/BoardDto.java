@@ -3,27 +3,24 @@ package board;
 import java.sql.Timestamp;
 
 public class BoardDto {
-	public BoardDto(String title, String content, String user, String password) {
+	public BoardDto(String title, String content, String user) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.user = user;
-		this.password = password;
 	}
 	
-	public BoardDto(int no, String title, String content, String password) {
+	public BoardDto(int no, String title, String content) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.content = content;
-		this.password = password;
 	}
 
 	private int no;
 	private String title;
 	private String content;
 	private String user;
-	private String password;
 	private Timestamp regDate;
 	private Timestamp modDate;
 	private int viewCnt;
@@ -60,14 +57,6 @@ public class BoardDto {
 //		this.user = user;
 //	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Timestamp getRegDate() {
 		return regDate;
 	}
@@ -92,14 +81,13 @@ public class BoardDto {
 		this.viewCnt = viewCnt;
 	}
 
-	public BoardDto(int no, String title, String content, String user, String password, Timestamp regDate,
+	public BoardDto(int no, String title, String content, String user,Timestamp regDate,
 			Timestamp modDate, int viewCnt) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.content = content;
 		this.user = user;
-		this.password = password;
 		this.regDate = regDate;
 		this.modDate = modDate;
 		this.viewCnt = viewCnt;

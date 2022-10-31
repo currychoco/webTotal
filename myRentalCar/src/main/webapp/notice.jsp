@@ -19,7 +19,7 @@
 	%>
 	<jsp:include page="header.jsp"/>
 	<section>
-        <table border="1">
+        <table>
             <thead>
                 <tr>
                     <th>no</th>

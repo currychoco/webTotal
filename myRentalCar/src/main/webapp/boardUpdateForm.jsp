@@ -13,20 +13,17 @@
 </head>
 <body>
 	<%
-	BoardDao dao = BoardDao.getInstance();
-	BoardDto board = null;
-	
 	request.setCharacterEncoding("utf-8");
-	if(request.getParameter("no") != null){
-		int no = Integer.parseInt(request.getParameter("no"));
-		board = dao.getBoardByNo(no);
-		String password = request.getParameter("password");
-		if(!board.getPassword().equals(password)){
-			response.sendRedirect("alertAndRedirect?alertMsg=Wrong Password&redirectUrl=board");
-		}
-			
-		%>
-	}
+	if(session.getAttribute("id")==null){
+		response.sendRedirect("login");
+	}else{
+		BoardDao dao = BoardDao.getInstance();
+		BoardDto board = null;
+
+		request.setCharacterEncoding("utf-8");
+		if(request.getParameter("no") != null){
+			int no = Integer.parseInt(request.getParameter("no"));
+			board = dao.getBoardByNo(no);%>
 	
     <h1>EZEN BOARD</h1>
     <div class="form-container">
@@ -42,7 +39,8 @@
     <%}
     else {
     	response.sendRedirect("index"); // board 조회 실패
-    }
+    	}
+	}
     %>
 </body>
 </html>

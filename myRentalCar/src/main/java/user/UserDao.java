@@ -3,6 +3,7 @@ package user;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 import util.DBManager;
 
@@ -114,5 +115,40 @@ public class UserDao {
 		}
 		
 		return login;
+	}
+	
+	public UserDto getUserById(String id) {
+		UserDto user = null;
+		String sql = "select * from user where id = ?;";
+		
+		try {
+			conn=DBManager.getConnection(url, this.user, password);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int no = rs.getInt(1);
+				String password= rs.getString(3);
+				String name= rs.getString(4);
+				String phone = rs.getString(5);
+				String address = rs.getString(6);
+				String license = rs.getString(7);
+				Timestamp regDate = rs.getTimestamp(8);
+				
+				user=new UserDto(no, name, id, password, license, phone, address, regDate);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return user;
 	}
 }

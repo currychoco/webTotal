@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class boardWriteAction
@@ -29,24 +30,23 @@ public class boardWriteAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		BoardDao dao = BoardDao.getInstance();
+		HttpSession session = request.getSession();
+		String user = (String)session.getAttribute("id");
 		
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		System.out.println(title);
-		System.out.println(content);
-		if(title != null && content != null){
-
-			String user = request.getParameter("user");
-			String password = request.getParameter("password");
-
-			BoardDto board = new BoardDto(title, content, user, password);
+		if(user != null) {
+			BoardDao dao = BoardDao.getInstance();
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			System.out.println(title);
+			System.out.println(content);
+			
+			BoardDto board = new BoardDto(title, content, user);
 			dao.createBoard(board);
 			response.sendRedirect("alertAndRedirect?alertMsg=Save Success!&redirectUrl=board");
 		}else {
-			response.sendRedirect("alertAndRedirect?alertMsg=Save Failed&redirectUrl=board");
+			response.sendRedirect("alertAndRedirect?alertMsg=Login required&redirectUrl=login");
 		}
-
+		
 	}
 
 	/**

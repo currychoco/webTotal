@@ -39,9 +39,8 @@ public class BoardDao {
 	// CRUD
 	// Create
 	public void createBoard(BoardDto board) {
-		String sql = "insert into board values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into board values(?,?,?,?,?,?,?)";
 		int no = noGenerator(); // 마지막 no + 1
-		System.out.println(no);
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -49,12 +48,11 @@ public class BoardDao {
 			this.pstmt.setString(2, board.getTitle());
 			this.pstmt.setString(3, board.getContent());
 			this.pstmt.setString(4, board.getUser());
-			this.pstmt.setString(5, board.getPassword());
 			
 			Timestamp now = new Timestamp(System.currentTimeMillis());
+			this.pstmt.setTimestamp(5, now);
 			this.pstmt.setTimestamp(6, now);
-			this.pstmt.setTimestamp(7, now);
-			this.pstmt.setInt(8, 0);
+			this.pstmt.setInt(7, 0);
 			
 			this.pstmt.execute();
 			System.out.println("연동 성공");
@@ -112,12 +110,11 @@ public class BoardDao {
 				String title = this.rs.getString(2);
 				String content = this.rs.getString(3);
 				String user = this.rs.getString(4);
-				String password = this.rs.getString(5);
-				Timestamp regDate = this.rs.getTimestamp(6);
-				Timestamp modDate = this.rs.getTimestamp(7);
-				int viewCnt = this.rs.getInt(8);
+				Timestamp regDate = this.rs.getTimestamp(5);
+				Timestamp modDate = this.rs.getTimestamp(6);
+				int viewCnt = this.rs.getInt(7);
 				
-				BoardDto board = new BoardDto(no,title,content,user,password,regDate,modDate,viewCnt);
+				BoardDto board = new BoardDto(no,title,content,user,regDate,modDate,viewCnt);
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -149,12 +146,11 @@ public class BoardDao {
 				String title = this.rs.getString(2);
 				String content = this.rs.getString(3);
 				String user = this.rs.getString(4);
-				String password = this.rs.getString(5);
-				Timestamp regDate = this.rs.getTimestamp(6);
-				Timestamp modDate = this.rs.getTimestamp(7);
-				int viewCnt = this.rs.getInt(8);
+				Timestamp regDate = this.rs.getTimestamp(5);
+				Timestamp modDate = this.rs.getTimestamp(6);
+				int viewCnt = this.rs.getInt(7);
 				
-				board = new BoardDto(no, title, content, user, password, regDate, modDate, viewCnt);
+				board = new BoardDto(no, title, content, user, regDate, modDate, viewCnt);
 			}
 			
 		} catch (Exception e) {
@@ -179,8 +175,7 @@ public class BoardDao {
 		int no = board.getNo();
 		String title = board.getTitle();
 		String content = board.getContent();
-		Timestamp now = new Timestamp(System.currentTimeMillis());
-		String password = board.getPassword();
+		Timestamp now = new Timestamp(System.currentTimeMillis());;
 		
 		try {
 			this.conn = DBManager.getConnection(this.url, this.user, this.password);

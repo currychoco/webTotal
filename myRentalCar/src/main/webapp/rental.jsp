@@ -36,6 +36,7 @@
 					<td><img src="<%=car.getImg()%>" height="200px" width="400px"></td>
 					<td><%=car.getDOM() %></td>
 					<td><%=car.getFuel() %></td>
+					<td><button onclick="location.href='rentCar?no=<%=car.getNo()%>'">대여</button></td>
 				</tr>
 				<%} %>
 			</tbody>

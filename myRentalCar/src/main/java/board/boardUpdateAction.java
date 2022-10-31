@@ -35,7 +35,7 @@ public class boardUpdateAction extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			
-			BoardDto board = new BoardDto(no,title,content,"");
+			BoardDto board = new BoardDto(no,title,content);
 			dao.updateBoard(board);
 		}
 		response.sendRedirect("alertAndRedirect?alertMsg=Update Success!&redirectUrl=board");

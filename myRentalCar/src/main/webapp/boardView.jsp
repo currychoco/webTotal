@@ -31,6 +31,7 @@ function submitUpdate() {
 	BoardDto board = null;
 	
 	request.setCharacterEncoding("utf-8");
+	System.out.println(request.getParameter("no"));
 	if(request.getParameter("no") != null){
 		int no = Integer.parseInt(request.getParameter("no"));
 		dao.viewCnt(no);
@@ -43,10 +44,6 @@ function submitUpdate() {
             <textarea rows="20" readonly>
             <%=board.getContent() %>
             </textarea>
-            <div class="password">
-            	<span>비밀번호 : </span>
-            	<input type="password" name="password">
-            </div> 
             <input type="hidden" id="no" name = "no" value="<%=no %>">
             <input type="button" onclick="location.href='board'" value="글목록">
             <input type="button" onclick="submitUpdate()" value="수정하기">
