@@ -34,7 +34,7 @@ public class ServiceServlet extends HttpServlet {
 		// 정해놓은 규칙인 파라미터 명령어를 통해 -> 어떤 처리로직을 할지 결정
 		String command = request.getParameter("command");
 		
-		//Action Factory를 통해 인스턴스를 얻고 -> 실행(exqute)
+		//Action Factory를 통해 인스턴스를 얻고 -> 실행(exequte)
 		ActionFactory af= ActionFactory.getInstance();
 		Action action = af.getAction(command);
 		
